@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,14 @@ namespace YieldExample
         static void Main(string[] args)
         {
             Consumer();
+
+            var example2 = new Example2();
+            var x = example2.LoadImageAcquisition();
+            List<AcquisitionSettingsViewModel> y = new List<AcquisitionSettingsViewModel>();
+            y.AddRange(example2.LoadImageAcquisition()); // Lazy loading.
+
+            y.ForEach(a => Console.WriteLine(a.s));
+
         }
 
         public static void Consumer()
