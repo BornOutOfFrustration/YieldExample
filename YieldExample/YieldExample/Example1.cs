@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace YieldExample
+﻿namespace YieldExample
 {
+    using System;
+    using System.Collections.Generic;
+
     public class Example1
     {
         public void LoopOverYieldList()

@@ -1,30 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace YieldExample
+﻿namespace YieldExample
 {
+    using System.Collections.Generic;
+
     public class Example2
     {
-        List<string> stringList = new List<string>()
+        List<string> ListWithCharacters = new List<string>()
         {
-            "A", "B", "C"
+            "A", "B", "C",
         };
 
-        public IEnumerable<AcquisitionSettingsViewModel> LoadImageAcquisition()
+        public IEnumerable<Character> ListOfCharsUsingYield()
         {
-            foreach (var s in stringList)
+            foreach (var @char in ListWithCharacters)
             {
-                yield return new AcquisitionSettingsViewModel() { s = s };
+                // Yield will make a statemachine.
+                // - return type of the method is IEnumerable<Character>. A virtual return object is created.
+                // - each time a yield return is encountered, the return value (in this case a new character object)
+                //   is added to the virtual return object.
+                // After the foreach the virtual return object is returned.
+                yield return new Character() { Char = @char };
             }
         }
     }
 
-    public class AcquisitionSettingsViewModel
+    public class Character
     {
-        public string s;
+        public string Char { get; set; }
     }
-
 }

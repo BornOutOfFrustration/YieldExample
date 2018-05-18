@@ -1,44 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace YieldExample
+﻿namespace YieldExample
 {
+    using System;
+    using System.Collections.Generic;
+
     class Program
     {
         static void Main(string[] args)
         {
-            Consumer();
+            var example1 = new Example1();
+            example1.LoopOverYieldList();
 
             var example2 = new Example2();
-            var x = example2.LoadImageAcquisition();
-            List<AcquisitionSettingsViewModel> y = new List<AcquisitionSettingsViewModel>();
-            y.AddRange(example2.LoadImageAcquisition()); // Lazy loading.
+            var x = example2.ListOfCharsUsingYield();
+            List<Character> y = new List<Character>();
+            y.AddRange(example2.ListOfCharsUsingYield()); // IEnum is Lazy loading. Do this to have the breakpoint triggered
 
-            y.ForEach(a => Console.WriteLine(a.s));
-
-        }
-
-        public static void Consumer()
-        {
-            foreach(var i in Integers())
-            {
-                Console.WriteLine(i);
-            }
-
-        }
-
-        public static IEnumerable<int> Integers()
-        {
-            yield return 1;
-            yield return 2;
-            yield return 4;
-            yield return 8;
-            yield return 16;
-            yield return 16777216;
-        }
+            y.ForEach(a => Console.WriteLine(a.Char));
+        }        
     }
 }
